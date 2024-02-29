@@ -19,22 +19,6 @@ typedef struct binary_tree_s
 	struct binary_tree_s *right;
 } binary_tree_t;
 
-/**
- * struct queue_s - Queue node
- * @node: Pointer to a binary tree node
- * @next: Pointer to the next node in the queue
- */
-typedef struct queue_s
-{
-    const binary_tree_t *node;
-    struct queue_s *next;
-} queue_t;
-
-typedef struct binary_tree_s bst_t;
-
-void enqueue(queue_t **queue, const binary_tree_t *node);
-const binary_tree_t *dequeue(queue_t **queue);
-
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
@@ -61,10 +45,31 @@ int binary_tree_is_complete(const binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 int binary_tree_is_bst(const binary_tree_t *tree);
+
+/**
+ * struct queue_s - Queue node
+ * @node: Pointer to a binary tree node
+ * @next: Pointer to the next node in the queue
+ */
+typedef struct queue_s
+{
+    const binary_tree_t *node;
+    struct queue_s *next;
+} queue_t;
+
+void enqueue(queue_t **queue, const binary_tree_t *node);
+const binary_tree_t *dequeue(queue_t **queue);
+
+typedef struct binary_tree_s bst_t;
+
 bst_t *bst_insert(bst_t **tree, int value);
 bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
 int binary_tree_is_avl(const binary_tree_t *tree);
 int is_avl(const binary_tree_t *tree);
+
+typedef struct binary_tree_s avl_t;
+
+avl_t *avl_insert(avl_t **tree, int value);
 #endif /* _BINARY_TREES_H_ */
